@@ -130,8 +130,15 @@
             <span class="result-title">Game Over: Lifespan drained</span>
             <span class="result-sub">The word was</span>
             <span class="result-word">{{ $answer }}</span>
-            <a href="{{ route('games.hangman', ['player' => $playerId, 'reset'=>1]) }}"
-                 class="play-again-btn">Try Again</a>
+            <p style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--muted); text-align:center;">
+                This session is finished. Create a new session to play again.
+            </p>
+            <a href="{{ route('games.index') }}" class="play-again-btn" style="background:var(--muted); color:#fff;">
+                Back to Sessions
+            </a>
+            <a href="{{ route('games.create') }}" class="play-again-btn">
+                New Session
+            </a>
         </div>
     @else
         <div class="new-game-link">

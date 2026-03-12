@@ -64,6 +64,13 @@ class GameController extends Controller
         //     return redirect()->route('games.index');
         // }
 
+        // Block access to finished session
+
+         if ($gameSession->status === 'finished') {
+            return redirect()->route('games.index')
+                ->with('error', 'This session is finished. Create a new session to play again.');
+        }
+
         if ($gameSession->status === 'active' && $gameSession->updated_at->diffInDays(now())>=7){
             $gameSession->markInactive();
             return redirect()->route('games.index')
